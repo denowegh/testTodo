@@ -6,7 +6,6 @@ class Todo {
 
   constructor(todo) {
     this.id = uuidv1();
-
     this.text = todo.text;
     this.time = moment().startOf('hour').fromNow();
     this.type = 'active';

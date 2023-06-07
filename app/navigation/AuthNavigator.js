@@ -4,34 +4,35 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import config from '../config';
 
-import ActiveTodosScreen from '../containers/ActiveTodosScreen';
-import CompletedTodosScreen from '../containers/CompletedTodosScreen';
+import RegistrationScreen from '../containers/RegistrationScreen';
+import AuthenticationScreen from '../containers/AuthenticationScreen';
+
 
 const Tab = createBottomTabNavigator();
 
-const AppNavigator = () => {
+const AuthNavigator = () => {
   return (
     <Tab.Navigator
-    tabBarOptions={{
-      labelStyle: {
-        fontSize: 12
-      },
-    }}
-    screenOptions={{
-      tabBarStyle: {
-        padding: 5,
-      },
-      headerShown: false
-    }}
+      tabBarOptions={{
+        labelStyle: {
+          fontSize: 12
+        },
+      }}
+      screenOptions={{
+        tabBarStyle: {
+          padding: 5,
+        },
+        headerShown: false
+      }}
     >
       <Tab.Screen
-        name="ActiveTodos"
-        component={ActiveTodosScreen}
+        name="AuthenticationScreen"
+        component={AuthenticationScreen}
         options={{
-          tabBarLabel: "Active",
+          tabBarLabel: "Authentication",
           tabBarIcon: ({ color, focused }) => (
             <Icon
-              name={"pencil-square-o"}
+              name={"user"}
               size={18}
               color={`${color}`}
             />
@@ -39,13 +40,13 @@ const AppNavigator = () => {
         }}
       />
       <Tab.Screen
-        name="CompletedTodos"
-        component={CompletedTodosScreen}
+        name="Registration"
+        component={RegistrationScreen}
         options={{
-          tabBarLabel: "Completed",
+          tabBarLabel: "Registration",
           tabBarIcon: ({ color, focused }) => (
             <Icon
-              name={"check-square-o"}
+              name={"pencil-square-o"}
               size={18}
               color={`${color}`}
             />
@@ -56,4 +57,4 @@ const AppNavigator = () => {
   );
 };
 
-export default AppNavigator;
+export default AuthNavigator;

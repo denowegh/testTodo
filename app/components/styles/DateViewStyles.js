@@ -8,17 +8,14 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   day: {
-    color: 'white',
     fontSize: 10,
     fontWeight: '400'
   },
   date: {
-    color: 'white',
     fontSize: 30,
     fontWeight: '600'
   },
   month: {
-    color: 'white',
     fontSize: 8,
     fontWeight: '400'
   }

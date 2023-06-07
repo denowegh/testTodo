@@ -1,41 +1,29 @@
-import React, { useEffect } from 'react';
-
-import { View, SafeAreaView, Text } from 'react-native';
-import { useSelector,useDispatch } from 'react-redux';
-import { setAuthenticated, setRegistered } from "../redux/actions/AuthActionCreators";
-import { NavigationContainer } from '@react-navigation/native';
+import React, { useEffect, useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import AppNavigator from '../navigation/AppNavigator';
 import RegistrationScreen from '../containers/RegistrationScreen';
 import AuthenticationScreen from '../containers/AuthenticationScreen';
+import { selectUserState, setAuthenticated, setRegistered } from "../store/user";
+
+import  AuthNavigator  from "../navigation/AuthNavigator";
+
 
 const MainScreen = () => {
     const dispatch = useDispatch();
+    const {isAuthenticated} = useSelector(selectUserState);
 
     useEffect(()=>{
-      
         dispatch(setAuthenticated(false));
-
     },[])
 
-    const isAuthenticated = useSelector(state => state.userReducer.isAuthenticated);
-    
-    const isRegistered = useSelector(state => state.userReducer.isRegistered);
-    
+    if (isAuthenticated) {
+        return <AppNavigator />
+    }
+
+
     return (
-        isAuthenticated
-        ?
-            <AppNavigator />
-        :(
-            isRegistered
-            ?
-            <AuthenticationScreen />
-            :
-            <RegistrationScreen />
-            
-        
-        )
+        <AuthNavigator />
     );
-  
 };
 
 export default MainScreen;

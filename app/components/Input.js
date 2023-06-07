@@ -1,48 +1,53 @@
-import React, { Component } from 'react';
-import { Animated, View, TextInput, StyleSheet } from 'react-native';
-
+import React, { useState } from 'react';
+import { TextInput } from 'react-native';
+import { useDispatch } from 'react-redux';
 import styles from './styles/InputStyles';
+import 'react-native-get-random-values';
+import { v1 as uuidv1 } from 'uuid';
+const Input = (props) => {
+  const [text, setText] = useState('');
 
-export default class Input extends Component {
+  const dispatch = useDispatch();
 
-  state = {
-    text: '',
+  const onChangeText = (text) => {
+    setText(text);
   };
 
-  onChangeText = (text) => this.setState({text})
-
-  onSubmitEditing = () => {
-    const {onSubmitEditing} = this.props;
-    const {text} = this.state;
-
-    if (!text)
+  const onSubmitEditing = () => {
+    const { onSubmitEditing } = props;
+    
+    if (!text) {
       return;
+    }
 
-    onSubmitEditing(text);
-    this.setState({ text: '' });
+    dispatch(onSubmitEditing({text, id: uuidv1()}));
+    setText('');
   };
 
-  render() {
-    const {placeholder, placeholderTextColor} = this.props;
-    const {selectionColor, underlineColorAndroid} = this.props;
-    const {maxLength, clearTextOnFocus} = this.props;
-    const { style } = this.props
-    const {text} = this.state;
+  const {
+    placeholder,
+    placeholderTextColor,
+    selectionColor,
+    underlineColorAndroid,
+    maxLength,
+    clearTextOnFocus,
+    style,
+  } = props;
 
-    return (
-      <TextInput
-        style={style? style : styles.input}
-        value={text}
-        placeholder={placeholder}
-        placeholderTextColor={placeholderTextColor}
-        selectionColor={selectionColor}
-        underlineColorAndroid={underlineColorAndroid}
-        maxLength={maxLength}
-        clearTextOnFocus={clearTextOnFocus}
-        onChangeText={this.onChangeText}
-        onSubmitEditing={this.onSubmitEditing}
-      />
-    )
-  };
-
+  return (
+    <TextInput
+      style={style ? style : styles.input}
+      value={text}
+      placeholder={placeholder}
+      placeholderTextColor={placeholderTextColor}
+      selectionColor={selectionColor}
+      underlineColorAndroid={underlineColorAndroid}
+      maxLength={maxLength}
+      clearTextOnFocus={clearTextOnFocus}
+      onChangeText={onChangeText}
+      onSubmitEditing={onSubmitEditing}
+    />
+  );
 };
+
+export default Input;

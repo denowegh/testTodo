@@ -2,23 +2,19 @@ import React, { useState } from 'react';
 import { View, TextInput, Button, Alert, Text } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 import * as LocalAuthentication from 'expo-local-authentication';
-
-import config from "../config/index";
-import styles from "../components/styles/InputStyles";
-import { setAuthenticated } from '../redux/actions/AuthActionCreators';
+import {selectUserState, setAuthenticated} from "../store/user";
+import styles from "./styles/AuthenticationStyle";
 
 const AuthenticationScreen = () => {
   const dispatch = useDispatch();
   const [login, setLogin] = useState('');
   const [password, setPassword] = useState('');
-  const savedLogin = useSelector(state => state.userReducer.login);
-  const savedPassword = useSelector(state => state.userReducer.password);
+  const {login: savedLogin, password: savedPassword} = useSelector(selectUserState);
 
   const handleRegistration = () => {
     // Comparing entered login and password with saved values
     if (login === savedLogin && password === savedPassword) {
       dispatch(setAuthenticated(true));
-      Alert.alert('Success', 'You are logged in!');
     } else {
       dispatch(setAuthenticated(false));
       Alert.alert('Error', 'Failed to log in.');
@@ -38,7 +34,6 @@ const AuthenticationScreen = () => {
 
     if (result.success) {
       dispatch(setAuthenticated(true));
-      Alert.alert('Success', 'You are logged in!');
     } else {
       dispatch(setAuthenticated(false));
       Alert.alert('Error', 'Failed to log in.');
@@ -46,24 +41,26 @@ const AuthenticationScreen = () => {
   };
 
   return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: config.colors.dim_gray }}>
-      <Text style={{ fontSize: 30 }}>Log In</Text>
+    <View style={styles.container}>
+      <Text style={styles.title}>Log In</Text>
       <TextInput
-        style={{ ...styles.input, marginBottom: 10, paddingHorizontal: 10, borderWidth: 1, width: 300 }}
+        style={styles.input}
         placeholder="Username"
         value={login}
         onChangeText={text => setLogin(text)}
       />
       <TextInput
-        style={{ ...styles.input, marginBottom: 10, paddingHorizontal: 10, borderWidth: 1, width: 300 }}
+        style={styles.input}
         placeholder="Password"
         secureTextEntry={true}
         value={password}
         onChangeText={text => setPassword(text)}
       />
-      <Button title="Log In" color={config.colors.dim_gray} onPress={handleRegistration} />
-      <View style={{ height: 75 }} />
-      <Button title="Authenticate with Biometric Data" color={config.colors.dim_gray} onPress={handleAuthentication} />
+
+      <View style={styles.buttonContainer}>
+        <Button title="Log In" onPress={handleRegistration} />
+      </View>
+      <Button title="Authenticate with Biometric Data" onPress={handleAuthentication} />
     </View>
   );
 };

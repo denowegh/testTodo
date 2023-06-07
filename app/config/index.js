@@ -1,3 +1,8 @@
-import config from './config';
-
-export default config;
+export default {
+    "todos": {
+        "types": {
+            "active": "active",
+            "completed": "completed"
+        }
+    }
+};

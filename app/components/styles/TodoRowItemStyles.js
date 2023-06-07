@@ -5,9 +5,10 @@ const ROW_HEIGHT = 70;
 
 const styles = StyleSheet.create({
   row: {
-    backgroundColor: '#313842',
+    backgroundColor: 'white',
     paddingLeft: 15,
     paddingRight: 15,
+    borderWidth: 1,
     flexDirection: 'row',
     justifyContent: 'flex-start',
     alignItems: 'center',
@@ -43,12 +44,10 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 17,
     fontWeight: '500',
-    color: 'white',
   },
   time: {
     fontSize: 10,
     fontWeight: '400',
-    color: '#828B7B',
   }
 });
 

@@ -5,7 +5,6 @@ const commonStyles = StyleSheet.create({
   container: {
     marginTop: (Platform.OS === 'ios') ? 20 : 0,
     flex: 1,
-    backgroundColor: '#1B2127',
   },
   rowLeft: {
     flex: 1,
@@ -31,7 +30,7 @@ const commonStyles = StyleSheet.create({
   separator: {
     flex: 1,
     height: StyleSheet.hairlineWidth,
-    backgroundColor: '#182129',
+    backgroundColor: '#000',
   }
 });
 

@@ -18,8 +18,8 @@ export default class TodoRowItem extends Component {
           <View style={styles.timelineVerticalLink} />
           <Icon
              style={styles.icon}
-             name={config.icons.circle}
-             size={config.constants.row_timeline_icon_size}
+             name={"circle"}
+             size={6}
            />
         </View>
         <View style={styles.content}>
