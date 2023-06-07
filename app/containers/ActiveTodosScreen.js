@@ -7,7 +7,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import moment from 'moment';
 import SwipeView from 'react-native-swipeview';
 
-import config from "../config/index";
 
 import Title from '../components/Title';
 import Input from '../components/Input';

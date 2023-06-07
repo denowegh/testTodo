@@ -5,7 +5,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import moment from 'moment';
 import SwipeView from 'react-native-swipeview';
 
-import config from '../config';
 
 import Title from '../components/Title';
 import TodoRowItem from '../components/TodoRowItem';

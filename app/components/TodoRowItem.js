@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, Animated } from 'react-native';
 
-import config from '../config';
 
 import Icon from 'react-native-vector-icons/FontAwesome';
 import styles from './styles/TodoRowItemStyles';
